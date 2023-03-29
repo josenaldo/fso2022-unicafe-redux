@@ -8,8 +8,7 @@ describe('unicafe reducer', () => {
     bad: 0,
   }
 
-  test('should return a proper initial state when called with undefined state', () => {
-    const state = {}
+  it('should return a proper initial state when called with undefined state', () => {
     const action = {
       type: 'DO_NOTHING',
     }
@@ -18,7 +17,7 @@ describe('unicafe reducer', () => {
     expect(newState).toEqual(initialState)
   })
 
-  test('good is incremented', () => {
+  it('should increment good when called with action GOOD', () => {
     const action = {
       type: 'GOOD',
     }
@@ -31,5 +30,50 @@ describe('unicafe reducer', () => {
       ok: 0,
       bad: 0,
     })
+  })
+
+  it('should increment ok when called with action OK', () => {
+    const action = {
+      type: 'OK',
+    }
+    const state = initialState
+
+    deepFreeze(state)
+    const newState = counterReducer(state, action)
+    expect(newState).toEqual({
+      good: 0,
+      ok: 1,
+      bad: 0,
+    })
+  })
+
+  it('should increment bad when called with action BAD', () => {
+    const action = {
+      type: 'BAD',
+    }
+    const state = initialState
+
+    deepFreeze(state)
+    const newState = counterReducer(state, action)
+    expect(newState).toEqual({
+      good: 0,
+      ok: 0,
+      bad: 1,
+    })
+  })
+
+  it('should reset state when called with action ZERO', () => {
+    const action = {
+      type: 'ZERO',
+    }
+    const state = {
+      good: 1,
+      ok: 2,
+      bad: 3,
+    }
+
+    deepFreeze(state)
+    const newState = counterReducer(state, action)
+    expect(newState).toEqual(initialState)
   })
 })
