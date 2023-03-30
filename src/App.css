@@ -5,3 +5,20 @@
 main {
   margin-top: 60px;
 }
+
+.stats-title { 
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.stats {
+  display: flex;
+  text-align: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stats-item {
+  width: 100%;
+}

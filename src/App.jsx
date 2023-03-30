@@ -9,19 +9,54 @@ function App({ store }) {
     })
   }
 
+  const ok = () => {
+    store.dispatch({
+      type: 'OK',
+    })
+  }
+
+  const bad = () => {
+    store.dispatch({
+      type: 'BAD',
+    })
+  }
+
+  const reset = () => {
+    store.dispatch({
+      type: 'ZERO',
+    })
+  }
+
   return (
     <div className="container">
       <main>
         <div>
           <div className="grid">
-            <button onClick={good}>good</button>
-            <button>ok</button>
-            <button>bad</button>
-            <button>reset stats</button>
+            <button onClick={good}>Good</button>
+            <button onClick={ok}>OK</button>
+            <button onClick={bad}>Bad</button>
           </div>
-          <div>good {store.getState().good}</div>
-          <div>ok</div>
-          <div>bad</div>
+
+          <h2 className="stats-title">Statistics</h2>
+
+          <div className="grid stats">
+            <div className="stats-item">
+              <h3>Good</h3>
+              <span>{store.getState().good}</span>
+            </div>
+            <div className="stats-item">
+              <h3>OK</h3>
+              <span>{store.getState().ok}</span>
+            </div>
+            <div className="stats-item">
+              <h3>Bad</h3>
+              <span>{store.getState().bad}</span>
+            </div>
+          </div>
+
+          <button onClick={reset} className="secondary">
+            Reset stats
+          </button>
         </div>
       </main>
     </div>
